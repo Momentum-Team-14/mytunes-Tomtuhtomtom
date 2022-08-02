@@ -1,7 +1,7 @@
 console.log('connected!')
 
-let resultsDiv = document.querySelector('.MainPage')
-console.log('results div', resultsDiv)
+let mainPage = document.querySelector('.MainPage')
+console.log('results div', mainPage)
 
 let searchUrl = 'https://itunes.apple.com/search?term=david+hasselhoff&media=music'
 

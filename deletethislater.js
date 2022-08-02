@@ -1,7 +1,7 @@
 const mainPage = document.querySelector('.MainPage');
 
-function bringUpResults (customerArray) {
-    for (let customer of customerArray) {
+function bringUpResults (resultArray) {
+    for (let result of resultArray) {
         // Variable creation to create elements
         let entryBox = document.createElement('div');
         let imageBox = document.createElement('img');
@@ -17,22 +17,22 @@ function bringUpResults (customerArray) {
         addressBox.classList.add("addresses");
         dateBox.classList.add("dobs");
         //Change state to abbreviation
-        let customerAbrState = '';
+        let resultAbrState = '';
         for (let state of usStates) {
-            if (customer.location.state.toUpperCase() === state.name) {
-                customerAbrState = state.abbreviation;
+            if (result.location.state.toUpperCase() === state.name) {
+                resultAbrState = state.abbreviation;
             }
         }
         //entering information for elements
-        imageBox.src = customer.picture.large;
-        nameBox.innerText = `${customer.name.first.charAt(0).toUpperCase() 
-                            + customer.name.first.slice(1)} ${customer.name.last.charAt(0).toUpperCase() 
-                            + customer.name.last.slice(1)}`;
-        emailBox.innerText = `${customer.email}`;
-        addressBox.innerText = `${customer.location.street.number} ${customer.location.street.name}
-                                ${customer.location.city} ${customerAbrState} ${customer.location.postcode}`;
-        dateBox.innerText = `DOB: ${moment(customer.dob.date).format('MMM D, Y')}
-                                    Customer Since: ${moment(customer.registered.date).format('MMM D, Y')}`
+        imageBox.src = result.picture.large;
+        nameBox.innerText = `${result.name.first.charAt(0).toUpperCase() 
+                            + result.name.first.slice(1)} ${result.name.last.charAt(0).toUpperCase() 
+                            + result.name.last.slice(1)}`;
+        emailBox.innerText = `${result.email}`;
+        addressBox.innerText = `${result.location.street.number} ${result.location.street.name}
+                                ${result.location.city} ${resultAbrState} ${result.location.postcode}`;
+        dateBox.innerText = `DOB: ${moment(result.dob.date).format('MMM D, Y')}
+                                    result Since: ${moment(result.registered.date).format('MMM D, Y')}`
         //appending elements
         mainPage.appendChild(entryBox);
         entryBox.appendChild(imageBox);
@@ -42,4 +42,4 @@ function bringUpResults (customerArray) {
         entryBox.appendChild(dateBox);
     }
 }
-bringUpCustomers(customers);
+bringUpresults(results);
