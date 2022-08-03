@@ -15,9 +15,9 @@ searchForm.addEventListener('submit', (event) => {
     let searchQuery = userEntry.value;
     let adjustedUserEntry = searchQuery.replace(/\s/g, '+');
     searchUrl = `${searchBaseUrl}${adjustedUserEntry}`;
-    
     console.log(searchUrl);
     getSearchResults(searchUrl);
+    // window.location.reload();
 });
 
 function getSearchResults(url) {
