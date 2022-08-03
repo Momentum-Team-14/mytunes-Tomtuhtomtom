@@ -23,7 +23,7 @@ fetch(searchUrl, {
         console.log(songs);
         bringUpResults(songs);
     })
-
+    
     function bringUpResults (resultArray) {
         for (let result of resultArray) {
             // Variable creation to create elements
@@ -42,7 +42,7 @@ fetch(searchUrl, {
             dateBox.classList.add("dates");
             //entering information for elements
             imageBox.src = result.artworkUrl100;
-            songnameBox.innerText = `${result.trackName}`;
+            songnameBox.innerText = `"${result.trackName}"`;
             artistBox.innerText = `${result.artistName}`;
             albumBox.innerText = `${result.collectionName}`;
             dateBox.innerText = `Release Date: ${moment(result.releaseDate).format('MMM D, Y')}`

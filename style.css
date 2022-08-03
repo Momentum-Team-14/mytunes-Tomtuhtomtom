@@ -1,35 +1,79 @@
 body {
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
+    background-color: #edf1f9;
 }
+
 header {
+    font-family: monaco;
+    background: linear-gradient(
+        to right,
+        #FFFFFF 0%,
+        #ddb328 100%);
+    width: 100%;
+}
+
+#nameOfPage {
     font-weight: bold;
-    font-size: 2rem;
-    margin: 1.5rem;
+    font-size: 5rem;
+    width: 39.5rem;
+    margin: 2rem 0 0 2rem;
+}
+
+#subtitle {
+    font-family: 'Times New Roman';
+    font-weight: normal;
+    font-size: 1.2rem;
+    text-align: right;
+    padding: 0;
+    margin: 0 .5rem 1rem 0;
+
+}
+
+#searchBox {
+    text-align: center;
 }
 
 .MainPage {
     display: flex;
     flex-wrap: wrap;
+    background: linear-gradient(
+        to bottom,
+        #edf1f9 0%,
+        #3049b9 100%);
 }
 
-.entries {
-    height: 25rem;
-    width: 25%;
+.results {
+    width: 20%;
+    margin: 0 0 1rem 0;
     text-align: center;
 }
 
 .pics {
-    border-radius: 50% 80%;
-    height: 9rem;
-    width: 9rem;
+    border-radius: 5%;
+    height: 12rem;
+    width: 12rem;
 }
 
-.names {
+.songs {
+    font-family: 'Arial';
     font-size: 1.4rem;
-    width: 100%;
+    color: rgb(184, 120, 1);
+    text-shadow: 0 .1rem black;
+    margin: 0;
 }
 
-.emails {
-    font-size: 1rem;
-    color: grey;
+.artists {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.albums {
+    margin: 0;
+    font-size: .8rem;
+    font-style: italic;
+}
+ 
+.dates {
+    margin: 0;
+    font-size: .8rem;
 }
