@@ -1,30 +1,46 @@
-console.log('connected!')
+console.log('connected!');
 
-const mainPage = document.querySelector('.MainPage')
-console.log('results div', mainPage)
+const mainPage = document.querySelector('.MainPage');
+console.log('results div', mainPage);
 
 // need to make url adjustable later
-let searchUrl = 'https://itunes.apple.com/search?term=david+hasselhoff&media=music'
+let searchBaseUrl = 'https://itunes.apple.com/search?term='
 
-fetch(searchUrl, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' }
-})
+let searchForm = document.querySelector('#searchForm');
+
+searchForm.addEventListener('submit', (event) => {
+    let searchUrl = '';
+    event.preventDefault();
+    let userEntry = document.querySelector('#userEntry');
+    let searchQuery = userEntry.value;
+    let adjustedUserEntry = searchQuery.replace(/\s/g, '+');
+    searchUrl = `${searchBaseUrl}${adjustedUserEntry}`;
+    
+    console.log(searchUrl);
+    getSearchResults(searchUrl);
+});
+
+function getSearchResults(url) {
+    fetch(url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
     // response is whatever the fetch returns
     .then(response => {
-        //if (response.ok) {} add later
+        if (response.ok) {
         return response.json();
     }
-    //throw new Error('Request Failed!'); add later
-    //}, networkError => console.log(networkError.message) add later
+    throw new Error('Request Failed!');
+    }, networkError => console.log(networkError.message)
     )
     .then(data => {
         let songs = data.results;
         console.log(songs);
         bringUpResults(songs);
     })
-    
-    function bringUpResults (resultArray) {
+}
+
+function bringUpResults (resultArray) {
         for (let result of resultArray) {
             // Variable creation to create elements
             const resultBox = document.createElement('div');
