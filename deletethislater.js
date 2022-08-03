@@ -3,43 +3,32 @@ const mainPage = document.querySelector('.MainPage');
 function bringUpResults (resultArray) {
     for (let result of resultArray) {
         // Variable creation to create elements
-        let entryBox = document.createElement('div');
-        let imageBox = document.createElement('img');
-        let nameBox = document.createElement('h1');
-        let emailBox = document.createElement('h2');
-        let addressBox = document.createElement('p');
-        let dateBox = document.createElement('p');
+        const resultBox = document.createElement('div');
+        const imageBox = document.createElement('img');
+        const songnameBox = document.createElement('h1');
+        const artistBox = document.createElement('h2');
+        const albumBox = document.createElement('p');
+        const dateBox = document.createElement('p');
         //adding classes to elements created
-        entryBox.classList.add("entries");
+        resultBox.classList.add("results");
         imageBox.classList.add("pics");
-        nameBox.classList.add("names");
-        emailBox.classList.add("emails");
-        addressBox.classList.add("addresses");
-        dateBox.classList.add("dobs");
-        //Change state to abbreviation
-        let resultAbrState = '';
-        for (let state of usStates) {
-            if (result.location.state.toUpperCase() === state.name) {
-                resultAbrState = state.abbreviation;
-            }
-        }
+        songnameBox.classList.add("songs");
+        artistBox.classList.add("artists");
+        albumBox.classList.add("albums");
+        dateBox.classList.add("dates");
         //entering information for elements
-        imageBox.src = result.picture.large;
-        nameBox.innerText = `${result.name.first.charAt(0).toUpperCase() 
-                            + result.name.first.slice(1)} ${result.name.last.charAt(0).toUpperCase() 
-                            + result.name.last.slice(1)}`;
-        emailBox.innerText = `${result.email}`;
-        addressBox.innerText = `${result.location.street.number} ${result.location.street.name}
-                                ${result.location.city} ${resultAbrState} ${result.location.postcode}`;
-        dateBox.innerText = `DOB: ${moment(result.dob.date).format('MMM D, Y')}
-                                    result Since: ${moment(result.registered.date).format('MMM D, Y')}`
+        imageBox.src = result.artworkUrl100;
+        songnameBox.innerText = `${result.trackName}`;
+        artistBox.innerText = `${result.artistName}`;
+        albumBox.innerText = `${result.collectionName}`;
+        dateBox.innerText = `Release Date: ${moment(result.releaseDate).format('MMM D, Y')}`
         //appending elements
-        mainPage.appendChild(entryBox);
-        entryBox.appendChild(imageBox);
-        entryBox.appendChild(nameBox);
-        entryBox.appendChild(emailBox);
-        entryBox.appendChild(addressBox);
-        entryBox.appendChild(dateBox);
+        mainPage.appendChild(resultBox);
+        resultBox.appendChild(imageBox);
+        resultBox.appendChild(songnameBox);
+        resultBox.appendChild(artistBox);
+        resultBox.appendChild(albumBox);
+        resultBox.appendChild(dateBox);
     }
 }
-bringUpresults(results);
+bringUpresults(songs);
