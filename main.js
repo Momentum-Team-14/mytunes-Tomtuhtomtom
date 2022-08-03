@@ -1,8 +1,12 @@
 console.log('connected!');
 
 const mainPage = document.querySelector('.MainPage');
+const nowPlayingBox = document.querySelector('#soundbar');
 
-// need to make url adjustable later
+const nowPlaying = document.createElement('p');
+nowPlaying.classList.add("nowPlaying");
+nowPlayingBox.appendChild(nowPlaying);
+
 let searchBaseUrl = 'https://itunes.apple.com/search?term='
 
 let searchForm = document.querySelector('#searchForm');
@@ -12,12 +16,10 @@ searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
     let userEntry = document.querySelector('#userEntry');
     let searchQuery = userEntry.value;
-    let adjustedUserEntry = searchQuery.replace(/\s/g, '+');
+    let adjustedUserEntry = searchQuery;
     searchUrl = `${searchBaseUrl}${adjustedUserEntry}`;
     console.log(searchUrl);
     getSearchResults(searchUrl);
-    
-    // window.location.reload();
 });
 
 function getSearchResults(url) {
@@ -25,7 +27,6 @@ function getSearchResults(url) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     })
-    // response is whatever the fetch returns
     .then(response => {
         if (response.ok) {
             return response.json();
@@ -41,6 +42,7 @@ function getSearchResults(url) {
 }
 
 function bringUpResults (resultArray) {
+    mainPage.innerHTML = '';
     for (let result of resultArray) {
         // Variable creation to create elements
         const resultBox = document.createElement('div');
@@ -59,9 +61,9 @@ function bringUpResults (resultArray) {
         //entering information for elements
         imageBox.src = result.artworkUrl100;
         songnameBox.innerText = `"${result.trackName}"`;
-        artistBox.innerText = `${result.artistName}`;
-        albumBox.innerText = `${result.collectionName}`;
-        dateBox.innerText = `Release Date: ${moment(result.releaseDate).format('MMM D, Y')}`
+        artistBox.innerText = result.artistName;
+        albumBox.innerText = result.collectionName;
+        dateBox.innerText = `Release Date: ${moment(result.releaseDate).format('MMM D, Y')}`;
         //appending elements
         mainPage.appendChild(resultBox);
         resultBox.appendChild(imageBox);
@@ -70,9 +72,10 @@ function bringUpResults (resultArray) {
         resultBox.appendChild(albumBox);
         resultBox.appendChild(dateBox);
         let playAudio = document.querySelector('#playAudio');
-        // let grabAudio = document.querySelector('.pics');
         imageBox.addEventListener("click", (event) => {
-            playAudio.src = `${result.previewUrl}`;
+            nowPlaying.innerText = '';
+            playAudio.src = result.previewUrl;
+            nowPlaying.innerText = `Currently playing: ${songnameBox.innerText} By ${artistBox.innerText}`;
         })
     }
 }

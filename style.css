@@ -36,6 +36,17 @@ header {
     text-align: center;
 }
 
+#playAudio {
+    width: 40rem;
+}
+
+.nowPlaying {
+    font-family: Monaco;
+    color: rgb(37, 90, 164);
+    margin: 0;
+    color:rgb(184, 120, 1);
+}
+
 #searchForm {
     text-align: center;
     padding: 2rem;
