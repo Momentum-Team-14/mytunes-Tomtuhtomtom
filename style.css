@@ -43,6 +43,12 @@ header {
 
 #label {
     font-family: Monaco;
+    color: rgb(37, 90, 164);
+}
+
+#userEntry {
+    width: 15rem;
+    background-color:rgb(242, 223, 188);
 }
 
 .MainPage {
