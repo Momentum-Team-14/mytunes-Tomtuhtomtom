@@ -19,8 +19,9 @@ header {
     font-family: monaco;
     font-weight: bold;
     font-size: 5rem;
-    width: 36.2rem;
-    margin: 2rem 0 0 2rem;
+    width: 36rem;
+    margin: 2rem 0 0 3rem;
+    text-align: right;
 }
 
 #subtitle {
