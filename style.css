@@ -1,9 +1,6 @@
 body {
     background-color: #afbaee;
     margin: 0;
-    background-image: url('orange.png');
-    background-repeat: no-repeat;
-    background-size: 10.5rem;
 }
 
 header {
@@ -16,10 +13,14 @@ header {
 }
 
 #nameOfPage {
+    background-image: url('orange.png');
+    background-repeat: no-repeat;
+    background-size: 8rem;
+
     font-family: Monaco;
     font-weight: bold;
     font-size: 5rem;
-    width: 36rem;
+    width: 40rem;
     margin: 2rem 0 0 3rem;
     text-align: right;
 }
@@ -32,6 +33,15 @@ header {
     padding: 0;
     margin: 0 .5rem 1rem 0;
 }
+
+#headerBox {
+    position: fixed;
+    width: 100%;
+    background-color: #afbaee;
+    padding: 0;
+    margin: 0;
+}
+
 #soundbar{
     text-align: center;
 }
@@ -65,6 +75,7 @@ header {
 .MainPage {
     display: flex;
     flex-wrap: wrap;
+    padding-top: 25rem;
 }
 
 .error {
@@ -87,7 +98,10 @@ header {
     height: 12rem;
     width: 12rem;
     box-shadow: 0;
-    /* z-index: 2400; */
+}
+
+.pics:hover {
+    box-shadow: 0 -10px 10px 4px rgb(228, 126, 10);
 }
 
 .songs {

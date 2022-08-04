@@ -1,16 +1,17 @@
+// verify connected
 console.log('connected!');
-
+//declare some global const that will be needed
 const mainPage = document.querySelector('.MainPage');
 const nowPlayingBox = document.querySelector('#soundbar');
-
+//create and element to hold now playing message and display current song
 const nowPlaying = document.createElement('p');
 nowPlaying.classList.add("nowPlaying");
 nowPlayingBox.appendChild(nowPlaying);
-
+//link to API url
 let searchBaseUrl = 'https://itunes.apple.com/search?term='
-
+// variable to grab search bar and add user input
 let searchForm = document.querySelector('#searchForm');
-
+//Event listener for user submission and function to add input to url
 searchForm.addEventListener('submit', (event) => {
     let searchUrl = '';
     event.preventDefault();
@@ -21,24 +22,23 @@ searchForm.addEventListener('submit', (event) => {
     console.log(searchUrl);
     getSearchResults(searchUrl);
 });
-
+//AJAX fetch embedded in function to plug in url from above
 function getSearchResults(url) {
     fetch(url, {
-        method: 'GET',
+        method: 'GET', //getting data only
         headers: { 'Content-Type': 'application/json' }
     })
-    .then(response => {
+    .then(response => { //verify response from API
         if (response.ok) {
             return response.json();
         }
-        throw new Error('Request Failed!');
+        throw new Error('Request Failed!');  //throw network error if no response
     }, networkError => console.log(networkError.message)
     )
     .then(data => {
         let songs = data.results;
         console.log(songs);
-        //create results message?
-        if (songs.length === 0) {
+        if (songs.length === 0) {  //if statement for bad search to display nothing found
                 mainPage.innerHTML = '';
                 const errorBox = document.createElement('div');
                 const errorMessage = document.createElement('p');
@@ -47,13 +47,14 @@ function getSearchResults(url) {
                 mainPage.appendChild(errorBox);
                 errorBox.appendChild(errorMessage);
         } else {
-                    bringUpResults(songs);
+                    bringUpResults(songs);  //calls the function that runs the results
             }
         });
 }
 
 function bringUpResults (resultArray) {
-    mainPage.innerHTML = '';
+    mainPage.innerHTML = '';  //refreshes the page before uploading next search request
+    //"result" is the individual result and will be used inside the loop to grab specific data
     for (let result of resultArray) {
         // Variable creation to create elements
         const resultBox = document.createElement('div');
