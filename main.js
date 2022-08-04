@@ -37,9 +37,28 @@ function getSearchResults(url) {
     .then(data => {
         let songs = data.results;
         console.log(songs);
-        bringUpResults(songs);
-    })
+        if (songs.length === 0) {
+                mainPage.innerHTML = '';
+                const errorBox = document.createElement('div');
+                const errorMessage = document.createElement('p');
+                errorBox.classList.add("error");
+                errorMessage.innerText = "Wow, so much empty!!";
+                mainPage.appendChild(errorBox);
+                errorBox.appendChild(errorMessage);
+        } else {
+                    bringUpResults(songs);
+            }
+        });
 }
+
+
+
+// function createErrorMessage() {
+    //     const errorBox = document.createElement('div')
+    //     errorBox.classList.add("error");
+    //     errorBox.innerText = "Wow, so much empty!!";
+    //     mainPage.appendChild(errorBox);
+    // }
 
 function bringUpResults (resultArray) {
     mainPage.innerHTML = '';
@@ -59,9 +78,9 @@ function bringUpResults (resultArray) {
         albumBox.classList.add("albums");
         dateBox.classList.add("dates");
         //entering information for elements
+        artistBox.innerText = result.artistName;
         imageBox.src = result.artworkUrl100;
         songnameBox.innerText = `"${result.trackName}"`;
-        artistBox.innerText = result.artistName;
         albumBox.innerText = result.collectionName;
         dateBox.innerText = `Release Date: ${moment(result.releaseDate).format('MMM D, Y')}`;
         //appending elements

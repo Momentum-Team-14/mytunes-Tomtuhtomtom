@@ -67,6 +67,15 @@ header {
     flex-wrap: wrap;
 }
 
+.error {
+    font-family: Monaco;
+    font-weight:bolder;
+    width: 100%;
+    text-align: center;
+    font-size: 4rem;
+    color: rgb(184, 120, 1);
+}
+
 .results {
     width: 15rem;
     margin: 0 0 1rem 0;
