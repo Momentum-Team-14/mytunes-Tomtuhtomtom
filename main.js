@@ -17,7 +17,7 @@ searchForm.addEventListener('submit', (event) => {
     let userEntry = document.querySelector('#userEntry');
     let searchQuery = userEntry.value;
     let adjustedUserEntry = searchQuery;
-    searchUrl = `${searchBaseUrl}${adjustedUserEntry}`;
+    searchUrl = `${searchBaseUrl}${adjustedUserEntry}&limit=200`;
     console.log(searchUrl);
     getSearchResults(searchUrl);
 });
@@ -82,10 +82,7 @@ function bringUpResults (resultArray) {
         resultBox.appendChild(artistBox);
         resultBox.appendChild(albumBox);
         resultBox.appendChild(dateBox);
-
-        // const albumPop = querySelector('.pics');
-        //albumPop.addEventListener("mouseover", makePop);
-
+        
         //set up audio to play
         let playAudio = document.querySelector('#playAudio');
         imageBox.addEventListener("click", (event) => {
@@ -93,5 +90,6 @@ function bringUpResults (resultArray) {
             playAudio.src = result.previewUrl;
             nowPlaying.innerText = `Currently playing: ${songnameBox.innerText} By ${artistBox.innerText}`;
         })
-    }
-}
+    }}
+
+    
